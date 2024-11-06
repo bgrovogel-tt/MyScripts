@@ -74,5 +74,27 @@ foreach ($xsdFile in $xsdFiles) {
 Remove-Item -Path $baseTypesDestination -Force
 Write-Host "`n[INFO] Deleted BaseTypes.xsd from the schema directory." -ForegroundColor Green
 
-Write-Host "`n==== Script Complete ====" -ForegroundColor Cyan
-Write-Host "[INFO] Class generation from XSD files for API '$apiFolder' completed." -ForegroundColor Green
+# TODO - Move generated files to the repository directory
+
+# # Find the generated files ending in "Entity.cs" in the generated directory and its subdirectories
+# $generatedEntityFiles = Get-ChildItem -Path $outputApiDir -Filter "*Entity.cs" -Recurse
+
+# if ($generatedEntityFiles.Count -gt 0) {
+#   # Loop through each found file and move it to the target directory
+#   foreach ($file in $generatedEntityFiles) {
+#     $targetPath = Join-Path -Path $outputApiDir -ChildPath $file.Name
+
+#     # Move the file to the target location
+#     Move-Item -Path $file.FullName -Destination $targetPath -Force
+
+#     # Output the action to the console
+#     Write-Host "[INFO] Moved file: $($file.Name) to $targetPath" -ForegroundColor Green
+#   }
+# } else {
+#   Write-Host "[INFO] No files found ending with 'Entity.cs' in $outputApiDir or its subdirectories" -ForegroundColor Yellow
+# }
+
+# Final confirmation message
+Write-Host "`n==== Process Complete ====" -ForegroundColor Cyan
+Write-Host "[INFO] The files have been successfully created. You can find them here... $outputApiDir" -ForegroundColor Green
+Write-Host "[INFO] Reminder: The files created here will need to replace the '*Entity.cs' files within the solution." -ForegroundColor Red
